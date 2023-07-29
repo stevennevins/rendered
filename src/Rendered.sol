@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {IRenderer} from "src/IRenderer.sol";
+import {IRenderer} from "src/interfaces/IRenderer.sol";
 import {SSTORE2} from "sstore2/SSTORE2.sol";
 
 abstract contract Rendered {
