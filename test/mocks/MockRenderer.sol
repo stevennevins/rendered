@@ -10,6 +10,6 @@ contract MockRenderer is Renderer {
 
     function render(uint256 _tokenId, bytes calldata) external view override returns (string memory) {
         /// this renderer expects there to be no token data, and builds a url based on the base URI
-        return string.concat(IRendered(msg.sender).baseURI(), _tokenId.toString());
+        return string.concat(IRendered(msg.sender).baseString(), _tokenId.toString());
     }
 }

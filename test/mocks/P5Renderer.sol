@@ -15,7 +15,7 @@ contract P5Renderer is IRenderer {
     }
 
     function render(uint256, bytes calldata data) external view returns (string memory) {
-        return page(IRendered(msg.sender).baseURI(), string(data));
+        return page(IRendered(msg.sender).baseString(), string(data));
     }
 
     function libraryPieces() internal view returns (string memory) {

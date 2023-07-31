@@ -18,9 +18,9 @@ abstract contract Rendered {
      */
     address internal renderer;
     /**
-     * @dev Address of the base URI pointer.
+     * @dev Address of the base string pointer.
      */
-    address internal baseURIPointer;
+    address internal baseStringPointer;
 
     /**
      * @dev Mapping from token ID to address of the token data pointer.
@@ -37,17 +37,17 @@ abstract contract Rendered {
      * @dev Initializes the Rendered contract with the address of the renderer.
      * @param _renderer The address of the renderer contract.
      */
-    constructor(address _renderer, bytes memory _baseURI) {
+    constructor(address _renderer, bytes memory _baseString) {
         renderer = _renderer;
-        _setBaseURIData(_baseURI);
+        _setBaseString(_baseString);
     }
 
     /**
-     * @notice Returns the base URI for the token collection
-     * @return The base URI as a string.
+     * @notice Returns the base string for the token collection
+     * @return The base string.
      */
-    function baseURI() external view returns (string memory) {
-        return string(baseURIPointer.read());
+    function baseString() external view returns (string memory) {
+        return string(baseStringPointer.read());
     }
 
     /**
@@ -80,11 +80,11 @@ abstract contract Rendered {
     }
 
     /**
-     * @dev Sets the base URI data.
-     * @param _data The base URI data to be set.
+     * @dev Sets the base string data.
+     * @param _data The base string data to be set.
      */
-    function _setBaseURIData(bytes memory _data) internal {
+    function _setBaseString(bytes memory _data) internal {
         address pointer = _data.write();
-        baseURIPointer = pointer;
+        baseStringPointer = pointer;
     }
 }
