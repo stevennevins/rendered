@@ -30,7 +30,7 @@ abstract contract Rendered {
     /**
      * @dev Mapping from token ID to directly stored data.
      */
-    mapping(uint256 => bytes32) internal directTokenData;
+    mapping(uint256 => bytes) internal directTokenData;
 
     /**
      * @dev Emitted when the renderer contract is updated.
@@ -84,7 +84,7 @@ abstract contract Rendered {
      * @param _data The data to be set for the token.
      */
     function _setTokenData(uint256 _tokenId, bytes calldata _data) internal {
-        if (_data.length > 0) {
+        if (_data > 0) {
             directTokenData[_tokenId] = bytes32(_data);
         } else {
             address pointer = _data.write();
