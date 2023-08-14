@@ -84,8 +84,8 @@ abstract contract Rendered {
      * @param _data The data to be set for the token.
      */
     function _setTokenData(uint256 _tokenId, bytes calldata _data) internal {
-        if (_data > 0) {
-            directTokenData[_tokenId] = bytes32(_data);
+        if (_data.length > 0) {
+            directTokenData[_tokenId] = _data;
         } else {
             address pointer = _data.write();
             tokenDataPointers[_tokenId] = pointer;
