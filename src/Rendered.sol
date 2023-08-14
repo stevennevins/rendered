@@ -30,7 +30,7 @@ abstract contract Rendered {
     /**
      * @dev Mapping from token ID to directly stored data.
      */
-    mapping(uint256 => bytes32) internal directTokenData;
+    mapping(uint256 => bytes) internal directTokenData;
 
     /**
      * @dev Emitted when the renderer contract is updated.
