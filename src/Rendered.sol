@@ -30,7 +30,7 @@ abstract contract Rendered {
     /**
      * @dev Mapping from token ID to directly stored data.
      */
-    mapping(uint256 => bytes) internal directTokenData;
+    mapping(uint256 => bytes32) internal directTokenData;
 
     /**
      * @dev Emitted when the renderer contract is updated.
@@ -61,7 +61,7 @@ abstract contract Rendered {
      * @return The URI of the token as a string.
      */
     function tokenURI(uint256 _tokenId) external view returns (string memory) {
-        if (directTokenData[_tokenId].length < 96) {
+        if (directTokenData[_tokenId] > 0) {
             return IRenderer(renderer).render(_tokenId, directTokenData[_tokenId]);
         } else {
             address pointer = tokenDataPointers[_tokenId];
@@ -84,7 +84,7 @@ abstract contract Rendered {
      * @param _data The data to be set for the token.
      */
     function _setTokenData(uint256 _tokenId, bytes calldata _data) internal {
-        if (_data.length < 96) {
+        if (_data.length > 0) {
             directTokenData[_tokenId] = bytes32(_data);
         } else {
             address pointer = _data.write();
